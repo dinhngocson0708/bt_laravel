@@ -18,3 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/mas', [App\Http\Controllers\PageController::class,'getIndex']);
+Route::get('/detail/{id}', [App\Http\Controllers\PageController::class,'getDetail']);
+
+Route::get('/type/{id}', [App\Http\Controllers\PageController::class,'getLoaiSp']);
+
+
