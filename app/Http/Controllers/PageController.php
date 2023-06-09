@@ -79,7 +79,7 @@ class PageController extends Controller
             $product->new = $request->inputNew;							
             $product->id_type = $request->inputType;							
             $product->save();							
-            return redirect('/admin');							
+            return redirect('/admin')->with('Addsuccess', 'Thêm sản phẩm thành công');							
 	    }
 
         public function getAdminEdit($id)
@@ -99,7 +99,7 @@ class PageController extends Controller
              if (!$product) {
                  // Handle the case where the product is not found
                  return redirect()->back()->with('error', 'Product not found.');
-             }
+            }
          
              if ($request->hasFile('editImage')) {
                  $file = $request->file('editImage');
@@ -119,7 +119,8 @@ class PageController extends Controller
              $product->save();
     
              
-             return redirect('/admin');            
+            // Trong phần xử lý của bạn
+            return redirect('/admin')->with('Editsuccess', 'Sửa sản phẩm thành công');
             }
          
          
@@ -133,7 +134,7 @@ class PageController extends Controller
             if ($product) {
                 $product->delete();
             }
-            return redirect('/admin');
+            return redirect('/admin')->with('Deletesuccess', 'Xóa sản phẩm thành công');
         }
     
 }

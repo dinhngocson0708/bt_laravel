@@ -61,7 +61,20 @@
 	 </tbody>																
 	 </table>																
 	 <div class="space50">&nbsp;</div>																
-	</div>																
+	</div>	
+	@if (session('Addsuccess'))
+    <script>
+        window.alert("Thêm thành công!");
+    </script>
+	@elseif	(session('Editsuccess'))
+	<script>
+        window.alert("Sửa thành công!");
+    </script>
+	@elseif	(session('Deletesuccess'))
+	<script>
+        window.alert("Xóa thành công!");
+    </script>
+	@endif
 	<script>																
 	$(document).ready(function() {																
 	 $('#table_admin_product').DataTable();																

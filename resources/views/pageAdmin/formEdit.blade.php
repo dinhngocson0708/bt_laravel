@@ -54,7 +54,7 @@
 	 </div>
 	
 	 <div class="form-group">
-	 <img id="preview-image-before-upload" src="source/image/product/{{$product->image}}" alt="preview image" style="max-height: 250px;">
+	 <img id="preview-image-before-upload" src="../source/image/product/{{$product->image}}" alt="preview image" style="max-height: 250px;">
 	 <script type="text/javascript">
 	 $(document).ready(function(e) {
 	 $('#inputImage').change(function() {
