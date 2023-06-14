@@ -34,3 +34,16 @@ Route::post('/admin-delete/{id}', [App\Http\Controllers\PageController::class, '
 
 
 Route::post('/admin-export', [App\Http\Controllers\PageController::class, 'exportAdminProduct'])->name('export');
+
+Route::get('/register', function () {return view('users.register');});
+Route::post('/register',[App\Http\Controllers\UserController::class,'Register']);						
+
+Route::get('/login', function () { return view('users.login');});	
+Route::post('/login',[App\Http\Controllers\UserController::class,'login']);	
+
+Route::get('/logout',[App\Http\Controllers\UserController::class,'logout']);	
+
+													
+Route::get('add-to-cart/{id}', [App\Http\Controllers\PageController::class, 'getAddToCart'])->name('themgiohang');												
+Route::get('del-cart/{id}', [App\Http\Controllers\PageController::class, 'getDelItemCart'])->name('xoagiohang');												
+                    
