@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class UserController extends Controller
 {
+
     public function  Login(Request $request){
         $login=[
             'email'=>$request->input('email'),
@@ -39,10 +40,8 @@ class UserController extends Controller
             'password'=>'required',
             'c_password'=>'required|same:password'
         ]);
-
         $input['password']= bcrypt($input['password']);
         User::create($input);
-
         echo '
         <script>
             alert("Đăng ký thành công. Vui lòng đăng nhập.");

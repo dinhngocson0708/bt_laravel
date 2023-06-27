@@ -47,3 +47,4 @@ Route::get('/logout',[App\Http\Controllers\UserController::class,'logout']);
 Route::get('add-to-cart/{id}', [App\Http\Controllers\PageController::class, 'getAddToCart'])->name('themgiohang');												
 Route::get('del-cart/{id}', [App\Http\Controllers\PageController::class, 'getDelItemCart'])->name('xoagiohang');												
                     
+Route::post('/comment/{id}', [App\Http\Controllers\PageController::class, 'storeComments']);

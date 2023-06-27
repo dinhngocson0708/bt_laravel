@@ -88,28 +88,42 @@
  <div class="row">															
   <div class="col-md-12">															
 <div class="card-body">															
- <form method="post" action="/comment/{{$sanpham->id}}">															
-  @csrf															
-  <div class="form-group">															
-<textarea class="form-control" name="comment" required></textarea>															
-  </div>															
-  <button type="submit" class="beta-btn primary">Bình luận</button>															
- </form>															
+  <form method="post" action="/comment/{{$sanpham->id}}">
+    @csrf
+    @method('POST')
+    <div class="form-group">
+        <textarea class="form-control" name="comment" style="width:500px" required></textarea>
+    </div>
+    <button type="submit" class="beta-btn primary">Bình luận</button>
+</form>
+														
 </div>															
   </div>															
  </div>															
 </div>															
 															
-@if(isset($comments))															
-@foreach($comments as $comment)															
-<p class="border-bottom">															
-<p><b class="pull-left">{{$comment->username}}</b></p><br />															
-<p>{{$comment->comment}}</p>															
-</p>															
-@endforeach															
-@else															
-<p>Chưa có bình luận nào cả!</p>															
-@endif															
+@if(isset($comments))
+
+    @foreach($comments as $comment)
+
+        <p class="border-bottom">
+
+            <p><b class="pull-left">{{$comment->username}}</b></p><br />
+
+            <p>{{$comment->comment}}</p>
+
+        </p>
+
+    @endforeach
+
+@else
+
+    <p>Chưa có bình luận nào cả!</p>
+
+@endif
+
+
+														
   </div>															
 															
  </div>															

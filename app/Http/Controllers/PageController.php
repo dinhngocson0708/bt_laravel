@@ -9,6 +9,8 @@ use App\Models\Type_product;
 use App\Models\Comment;
 use App\Models\BillDetail;
 use App\Models\Cart;
+use App\Models\Comments;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
 class PageController extends Controller
@@ -24,8 +26,8 @@ class PageController extends Controller
         public function getDetail(Request $request){
             $sanpham=Product::where('id',$request->id)->first();
             $splienquan=Product::where('id','<>',$sanpham->id,'and','id_type','=',$sanpham->id_type)->paginate(3);
-            $comment=Comment::where('id_product',$request->id)->first();
-            return view('page.chitiet_sanpham',compact('sanpham','splienquan','comment'));
+            $comments=Comments::where('id_product',$request->id)->get();
+            return view('page.chitiet_sanpham',compact('sanpham','splienquan','comments'));
         }
 
         public function getLoaiSp($type)
@@ -174,7 +176,7 @@ class PageController extends Controller
         $cart->removeItem($id);
         if(count($cart->items)>0){
         Session::put('cart',$cart);
-
+        
         }
         else{
             Session::forget('cart');
@@ -183,6 +185,20 @@ class PageController extends Controller
     }
 
 
+    public function storeComments(Request $request, $id)
+    {
+        // Lấy thông tin người dùng đăng nhập
+        $user = Auth::user();
+        // Lưu comment vào database
+        $comment = new Comments;
+        $comment->username = $user->name; // Lấy tên của người đăng nhập
+        $comment->comment = $request->input('comment');
+        $comment->id_product =$id;
+        $comment->save();
+
+        // Chuyển hướng về trang hiển thị bài viết
+        return redirect()->back();
+    }
 
 
 }
